@@ -1,0 +1,42 @@
+:root {
+    --bgColor : #24353f;
+    --textColor :rgb(23, 162, 184);
+}
+
+section{
+    background-color: var(--bgColor);
+}
+
+h1 ,h2 {
+    color: var(--textColor);
+}
+
+.content h3{
+    box-shadow: rgb(0, 0, 0) -5px 2px 54px -9px;
+}
+
+.content{
+    box-shadow: rgb(0, 0, 0) -5px 2px 54px -9px;
+}
+
+.content input , .content input:focus{
+    background-color: var(--bgColor);
+    
+}
+
+.content button{
+    background-color: var(--bgColor);
+    color:var(--textColor) ;
+    border: 1px solid var(--textColor);
+}
+
+.content a{
+    text-decoration: none;
+}
+.content a:hover{
+    text-decoration:underline;
+}
+
+.successMessage{
+    display: none;
+}

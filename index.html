@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mediaQuery.css">
+</head>
+<body>
+    
+
+    <section class="vh-100 container-fluid">
+        <div class="row w-50 m-auto py-5 ">
+            <div class="content col-12 p-5 text-center">
+                <div class="row gy-4" id="loginRegisterFrom">
+                    <h1>Smart Login System</h1>
+
+                    <div class="welcome bg-success d-none">
+                        <h1 class="text-white h-1 fa-6 fw-bolder py-5">You Are welcome</h1>
+                        <h2 id="welcomeName"></h2>
+                        <button   onclick="logOut()" class="btn btn-outline-danger">Log Out</button>  
+                          
+                    </div>
+                    
+                    <h2 id="loginForm" class="signInFrom">Login From</h2>
+                    <h2 id="signUpForm" class="signUpForm d-none">Registration From</h2>  
+
+                    <div class="successOrFailedMessage d-none p-2 rounded-3 fw-bold fs-4 text-bg-light " id="successMessage" ></div>
+
+                    <input id="userName" type="text" placeholder="Enter your name" class=" userName  form-control text-white d-none">
+                    <input id="userEmail" type="text" placeholder="Enter your email" class="userEmail form-control text-white">
+                    <input id="userPassword" type="password" placeholder="Enter your password" class="userPassword form-control">
+                    <button onclick="SignIn()" class="signInbtn btn btn-outline-danger">Log In</button> 
+                    
+                    <button id="registerBtn" onclick="addNewUser()" class="signUpForm registerBtn btn btn-outline-secondary d-none">Register</button>
+                    
+                    <p id="signUp" class="signUpbtn text-white fw-bold">Don't have an account?? <button class="text-white border-0" onclick="signUp()">Sign up</button> </p>
+                    <p id="signIn" class="signInFrom text-white fw-bold d-none">You have an account.... <button class="text-white border-0" onclick="logIn()">Sign in</button> </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
