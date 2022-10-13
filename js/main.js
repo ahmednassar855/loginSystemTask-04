@@ -63,6 +63,7 @@ function validateRegexName(){
             `;
             document.querySelector('.successOrFailedMessage').classList.replace("d-none" ,"d-block");
             document.querySelector('.successOrFailedMessage').classList.add("bg-danger");
+
         return false;
     }
    
@@ -70,9 +71,10 @@ function validateRegexName(){
 
 function checkEmailIfExist(){
     users = JSON.parse(localStorage.getItem("users"));
+    if( localStorage.getItem("users") !=null ){
         var index = users.findIndex(checkEmail => checkEmail.userEmail === newUserEmail.value );
         console.log(index);
-        if (index < 0){
+        if (index <0){
             return true;
         }else{
             console.log("email is exist");
@@ -82,9 +84,12 @@ function checkEmailIfExist(){
             Theis Email is already reserved 
             `;
             document.querySelector('.successOrFailedMessage').classList.replace("d-none" ,"d-block");
-            document.querySelector('.successOrFailedMessage').classList.add("bg-danger");
+            document.querySelector('.successOrFailedMessage').classList.add("bg-danger"); 
             return false;
-        }
+        } 
+    }
+    return true;
+    
 }
 
 function validateRegexEmail() {
@@ -133,40 +138,48 @@ function addSucessfully(){
     document.querySelector('.successOrFailedMessage').classList.add("bg-info");
 }
 
-// -----------------------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------
-
-
 
 // comment : add new user
 var users = [];
 function addNewUser(){
-    if( validateRegexName() && validateRegexEmail() && checkEmailIfExist() && CheckRegexPassword() ){
-        newUser = {
-            userName : newUserName.value,
-            userEmail : newUserEmail.value,
-            userPassword : newUserPassword.value
-        }       
-        if( localStorage.getItem("users") != null ){
+    if( localStorage.getItem("users") !=null ){
+        if( validateRegexName() && validateRegexEmail()  && CheckRegexPassword() && checkEmailIfExist()){
+            newUser = {
+                userName : newUserName.value.trim(),
+                userEmail : newUserEmail.value.trim(),
+                userPassword : newUserPassword.value.trim()
+            }       
+            console.log(newUser);
             console.log("this email is not exist in data and will add it");
             users.push(newUser);
             localStorage.setItem("users",JSON.stringify(users));
-            clear();
+                
             addSucessfully();
             logIn();
-            console.log("add seccessfully");
-               
-        }else{
-            users.push(newUser);
-            localStorage.setItem("users",JSON.stringify(users));
+            console.log("add seccessfully");       
             clear();
-            addSucessfully();
-            logIn();
-        }         
+        }
     }
+    else if (validateRegexName() && validateRegexEmail()  && CheckRegexPassword() ){
+        newUser = {
+            userName : newUserName.value.trim(),
+            userEmail : newUserEmail.value.trim(),
+            userPassword : newUserPassword.value.trim()
+        }       
+        console.log(newUser);
+        console.log("this email is not exist in data and will add it");
+        users.push(newUser);
+        localStorage.setItem("users",JSON.stringify(users));
+            
+        addSucessfully();
+        logIn();
+        console.log("add seccessfully");       
+        clear();
+    }
+    else {
+        console.log("erorrrrr re5m");
+    }
+    
 }
 
 function clear(){
@@ -188,7 +201,6 @@ function SignIn(){
 }
 function checkEmailIsCorrect(){
     users = JSON.parse(localStorage.getItem("users"));
-    
     var index = users.findIndex(checkEmail => checkEmail.userEmail === newUserEmail.value );
         console.log(index);
         if (index >= 0){
